@@ -1,5 +1,32 @@
 transforms:
+  - MergeEnums:
+      from: CCMR\d_Input_CC\dS
+      to: CCMR_Input_CCS
+      check: Layout
+
+  # Remove digits from enum names
+  - MergeEnums:
+      from: ([^\d]*)[\d]*([^\d]*)[\d]*([^\d]*)[\d]*
+      to: $1$2$3
+
   - MakeFieldArray:
       fieldsets: .*
       from: ([A-Z]+)\d+
       to: $1
+  - MakeFieldArray:
+      fieldsets: .*
+      from: CC[56]IF
+      to: CCIF_56
+  - MakeFieldArray:
+      fieldsets: .*
+      from: (CC|IC|OC)\d([A-Z]+)
+      to: $1$2
+  - MergeFieldsets:
+      from: CCMR\d_(.*)
+      to: CCMR_$1
+      check: NoCheck
+      main: CCMR1_Input
+  - MakeRegisterArray:
+      blocks: .*
+      from: CCMR\d_(.*)
+      to: CCMR_$1
