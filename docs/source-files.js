@@ -1,0 +1,10 @@
+var N = null;var sourcesIndex = {};
+sourcesIndex["bare_metal"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["bitfield"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["cortex_m"] = {"name":"","dirs":[{"name":"peripheral","files":["cbp.rs","cpuid.rs","dcb.rs","dwt.rs","fpb.rs","fpu.rs","icb.rs","itm.rs","mod.rs","mpu.rs","nvic.rs","scb.rs","syst.rs","tpiu.rs"]},{"name":"register","files":["basepri.rs","basepri_max.rs","control.rs","faultmask.rs","mod.rs","msp.rs","primask.rs","psp.rs"]}],"files":["asm.rs","call_asm.rs","delay.rs","interrupt.rs","itm.rs","lib.rs","macros.rs","prelude.rs"]};
+sourcesIndex["embedded_hal"] = {"name":"","dirs":[{"name":"blocking","files":["delay.rs","i2c.rs","mod.rs","rng.rs","serial.rs","spi.rs"]},{"name":"digital","files":["mod.rs","v1.rs","v1_compat.rs","v2.rs","v2_compat.rs"]}],"files":["adc.rs","fmt.rs","lib.rs","prelude.rs","serial.rs","spi.rs","timer.rs","watchdog.rs"]};
+sourcesIndex["stm32_metapac"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["vcell"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["void"] = {"name":"","files":["lib.rs"]};
+sourcesIndex["volatile_register"] = {"name":"","files":["lib.rs"]};
+createSourceSidebar();

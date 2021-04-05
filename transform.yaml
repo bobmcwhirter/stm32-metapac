@@ -1,0 +1,5 @@
+transforms:
+  - MakeFieldArray:
+      fieldsets: .*
+      from: ([A-Z]+)\d+
+      to: $1

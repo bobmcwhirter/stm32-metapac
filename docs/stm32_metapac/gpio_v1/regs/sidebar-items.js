@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Brr","Port bit reset register (GPIOn_BRR)"],["Bsrr","Port bit set/reset register (GPIOn_BSRR)"],["Cr","Port configuration register (GPIOn_CRx)"],["Idr","Port input data register (GPIOn_IDR)"],["Lckr","Port configuration lock register"],["Odr","Port output data register (GPIOn_ODR)"]]});

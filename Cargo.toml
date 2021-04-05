@@ -1,0 +1,11 @@
+[package]
+name = "stm32-metapac"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+cortex-m = "0.7.1"
+cortex-m-rt = { optional = true, version = "0.6" }
+
+[features]
+rt = ["cortex-m-rt/device"]

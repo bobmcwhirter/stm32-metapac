@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["Usart1","Universal synchronous asynchronous receiver transmitter"]]});
