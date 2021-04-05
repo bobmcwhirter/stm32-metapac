@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["TimAdv","Advanced-timers"],["TimGp","General purpose timer"]]});
+initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["TimAdv","Advanced-timers"],["TimBasic","General purpose timer"],["TimGp16","General purpose timer"],["TimGp32","General purpose timer"]]});

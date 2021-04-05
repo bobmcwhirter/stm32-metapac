@@ -1,12 +1,57 @@
 ---
-block/TIM_GP:
+block/TIM_BASIC:
   description: General purpose timer
   items:
     - name: CR1
       description: control register 1
       byte_offset: 0
       reset_value: 0
-      fieldset: CR1
+      fieldset: CR1_BASIC
+    - name: CR2
+      description: control register 2
+      byte_offset: 4
+      reset_value: 0
+      fieldset: CR2_BASIC
+    - name: DIER
+      description: DMA/Interrupt enable register
+      byte_offset: 12
+      reset_value: 0
+      fieldset: DIER_BASIC
+    - name: SR
+      description: status register
+      byte_offset: 16
+      reset_value: 0
+      fieldset: SR_BASIC
+    - name: EGR
+      description: event generation register
+      byte_offset: 20
+      reset_value: 0
+      access: Write
+      fieldset: EGR_BASIC
+    - name: CNT
+      description: counter
+      byte_offset: 36
+      reset_value: 0
+      fieldset: CNT_16
+    - name: PSC
+      description: prescaler
+      byte_offset: 40
+      reset_value: 0
+      fieldset: PSC
+    - name: ARR
+      description: auto-reload register
+      byte_offset: 44
+      reset_value: 0
+      fieldset: ARR_16
+block/TIM_GP16:
+  extends: TIM_BASIC
+  description: General purpose timer
+  items:
+    - name: CR1
+      description: control register 1
+      byte_offset: 0
+      reset_value: 0
+      fieldset: CR1_GP
     - name: CR2
       description: control register 2
       byte_offset: 4
@@ -54,29 +99,11 @@ block/TIM_GP:
       byte_offset: 32
       reset_value: 0
       fieldset: CCER_GP
-    - name: CNT
-      description: counter
-      byte_offset: 36
-      reset_value: 0
-      fieldset: CNT
     - name: PSC
       description: prescaler
       byte_offset: 40
       reset_value: 0
       fieldset: PSC
-    - name: ARR
-      description: auto-reload register
-      byte_offset: 44
-      reset_value: 0
-      fieldset: ARR
-    - name: CCR
-      description: capture/compare register 1
-      array:
-        len: 4
-        stride: 4
-      byte_offset: 52
-      reset_value: 0
-      fieldset: CCR
     - name: DCR
       description: DMA control register
       byte_offset: 72
@@ -87,8 +114,30 @@ block/TIM_GP:
       byte_offset: 76
       reset_value: 0
       fieldset: DMAR
+block/TIM_GP32:
+  extends: TIM_GP16
+  description: General purpose timer
+  items:
+    - name: CNT
+      description: counter
+      byte_offset: 36
+      reset_value: 0
+      fieldset: CNT_32
+    - name: ARR
+      description: auto-reload register
+      byte_offset: 44
+      reset_value: 0
+      fieldset: ARR_32
+    - name: CCR
+      description: capture/compare register 1
+      array:
+        len: 4
+        stride: 4
+      byte_offset: 52
+      reset_value: 0
+      fieldset: CCR_32
 block/TIM_ADV:
-  extends: TIM_GP
+  extends: TIM_GP16
   description: Advanced-timers
   items:
     - name: RCR
@@ -127,13 +176,48 @@ block/TIM_ADV:
       reset_value: 0
       access: Write
       fieldset: EGR_ADV
-fieldset/ARR:
+fieldset/ARR_32:
   description: auto-reload register
   fields:
     - name: ARR
       description: Auto-reload value
       bit_offset: 0
       bit_size: 32
+fieldset/ARR_16:
+  description: auto-reload register
+  fields:
+    - name: ARR
+      description: Auto-reload value
+      bit_offset: 0
+      bit_size: 16
+fieldset/CCR_32:
+  description: capture/compare register 1
+  fields:
+    - name: CCR
+      description: Capture/Compare 1 value
+      bit_offset: 0
+      bit_size: 32
+fieldset/CCR_16:
+  description: capture/compare register 1
+  fields:
+    - name: CCR
+      description: Capture/Compare 1 value
+      bit_offset: 0
+      bit_size: 16
+fieldset/CNT_32:
+  description: counter
+  fields:
+    - name: CNT
+      description: counter value
+      bit_offset: 0
+      bit_size: 32
+fieldset/CNT_16:
+  description: counter
+  fields:
+    - name: CNT
+      description: counter value
+      bit_offset: 0
+      bit_size: 16
 fieldset/BDTR:
   description: break and dead-time register
   fields:
@@ -274,21 +358,7 @@ fieldset/CCMR_Output:
       array:
         len: 2
         stride: 8
-fieldset/CCR:
-  description: capture/compare register 1
-  fields:
-    - name: CCR
-      description: Capture/Compare 1 value
-      bit_offset: 0
-      bit_size: 32
-fieldset/CNT:
-  description: counter
-  fields:
-    - name: CNT
-      description: counter value
-      bit_offset: 0
-      bit_size: 32
-fieldset/CR1:
+fieldset/CR1_BASIC:
   description: control register 1
   fields:
     - name: CEN
@@ -311,6 +381,15 @@ fieldset/CR1:
       bit_offset: 3
       bit_size: 1
       enum: OPM
+    - name: ARPE
+      description: Auto-reload preload enable
+      bit_offset: 7
+      bit_size: 1
+      enum: ARPE
+fieldset/CR1_GP:
+  extends: CR1_BASIC
+  description: control register 1
+  fields:
     - name: DIR
       description: Direction
       bit_offset: 4
@@ -321,17 +400,21 @@ fieldset/CR1:
       bit_offset: 5
       bit_size: 2
       enum: CMS
-    - name: ARPE
-      description: Auto-reload preload enable
-      bit_offset: 7
-      bit_size: 1
-      enum: ARPE
     - name: CKD
       description: Clock division
       bit_offset: 8
       bit_size: 2
       enum: CKD
+fieldset/CR2_BASIC:
+  description: control register 2
+  fields:
+    - name: MMS
+      description: Master mode selection
+      bit_offset: 4
+      bit_size: 3
+      enum: MMS
 fieldset/CR2_GP:
+  extends: CR2_BASIC
   description: control register 2
   fields:
     - name: CCDS
@@ -339,11 +422,6 @@ fieldset/CR2_GP:
       bit_offset: 3
       bit_size: 1
       enum: CCDS
-    - name: MMS
-      description: Master mode selection
-      bit_offset: 4
-      bit_size: 3
-      enum: MMS
     - name: TI1S
       description: TI1 selection
       bit_offset: 7
@@ -391,7 +469,7 @@ fieldset/DCR:
       description: DMA burst length
       bit_offset: 8
       bit_size: 5
-fieldset/DIER_GP:
+fieldset/DIER_BASIC:
   description: DMA/Interrupt enable register
   fields:
     - name: UIE
@@ -399,6 +477,15 @@ fieldset/DIER_GP:
       bit_offset: 0
       bit_size: 1
       enum: UIE
+    - name: UDE
+      description: Update DMA request enable
+      bit_offset: 8
+      bit_size: 1
+      enum: UDE
+fieldset/DIER_GP:
+  extends: DIER_BASIC
+  description: DMA/Interrupt enable register
+  fields:
     - name: CCIE
       description: Capture/Compare 1 interrupt enable
       bit_offset: 1
@@ -412,11 +499,6 @@ fieldset/DIER_GP:
       bit_offset: 6
       bit_size: 1
       enum: TIE
-    - name: UDE
-      description: Update DMA request enable
-      bit_offset: 8
-      bit_size: 1
-      enum: UDE
     - name: CCDE
       description: Capture/Compare 1 DMA request enable
       bit_offset: 9
@@ -453,7 +535,7 @@ fieldset/DMAR:
       description: DMA register for burst accesses
       bit_offset: 0
       bit_size: 16
-fieldset/EGR_GP:
+fieldset/EGR_BASIC:
   description: event generation register
   fields:
     - name: UG
@@ -461,6 +543,10 @@ fieldset/EGR_GP:
       bit_offset: 0
       bit_size: 1
       enum: UG
+fieldset/EGR_GP:
+  extends: EGR_BASIC
+  description: event generation register
+  fields:
     - name: CCG
       description: Capture/compare 1 generation
       bit_offset: 1
@@ -546,7 +632,7 @@ fieldset/SMCR:
       bit_offset: 15
       bit_size: 1
       enum: ETP
-fieldset/SR_GP:
+fieldset/SR_BASIC:
   description: status register
   fields:
     - name: UIF
@@ -554,6 +640,10 @@ fieldset/SR_GP:
       bit_offset: 0
       bit_size: 1
       enum: UIF
+fieldset/SR_GP:
+  extends: SR_BASIC
+  description: status register
+  fields:
     - name: CCIF
       description: Capture/compare 1 interrupt flag
       bit_offset: 1
