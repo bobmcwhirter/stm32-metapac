@@ -1,6 +1,6 @@
 ---
 block/TIM_BASIC:
-  description: General purpose timer
+  description: Basic timer
   items:
     - name: CR1
       description: control register 1
@@ -45,7 +45,7 @@ block/TIM_BASIC:
       fieldset: ARR_16
 block/TIM_GP16:
   extends: TIM_BASIC
-  description: General purpose timer
+  description: General purpose 16-bit timer
   items:
     - name: CR1
       description: control register 1
@@ -116,7 +116,7 @@ block/TIM_GP16:
       fieldset: DMAR
 block/TIM_GP32:
   extends: TIM_GP16
-  description: General purpose timer
+  description: General purpose 32-bit timer
   items:
     - name: CNT
       description: counter
