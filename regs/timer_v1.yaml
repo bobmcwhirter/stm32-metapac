@@ -114,6 +114,14 @@ block/TIM_GP16:
       byte_offset: 76
       reset_value: 0
       fieldset: DMAR
+    - name: CCR
+      description: capture/compare register
+      array:
+        len: 4
+        stride: 4
+      byte_offset: 52
+      reset_value: 0
+      fieldset: CCR_16
 block/TIM_GP32:
   extends: TIM_GP16
   description: General purpose 32-bit timer
@@ -129,7 +137,7 @@ block/TIM_GP32:
       reset_value: 0
       fieldset: ARR_32
     - name: CCR
-      description: capture/compare register 1
+      description: capture/compare register
       array:
         len: 4
         stride: 4
