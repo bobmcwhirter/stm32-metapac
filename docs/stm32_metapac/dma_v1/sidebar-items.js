@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["regs",""],["vals",""]],"struct":[["Ch","Channel cluster: CCR?, CNDTR?, CPAR?, and CMAR? registers"],["Dma","DMA controller"]]});

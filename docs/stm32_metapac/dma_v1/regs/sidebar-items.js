@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Cr","DMA channel configuration register (DMA_CCR)"],["Ifcr","DMA interrupt flag clear register (DMA_IFCR)"],["Isr","DMA interrupt status register (DMA_ISR)"],["Ndtr","DMA channel 1 number of data register"]]});

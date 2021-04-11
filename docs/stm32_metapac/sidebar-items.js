@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["generic",""],["gpio_v1",""],["gpio_v2",""],["timer_v1",""],["usart_v1",""]]});
+initSidebarItems({"mod":[["dma_v1",""],["dma_v2",""],["exti",""],["generic",""],["gpio_v1",""],["gpio_v2",""],["syscfg_f4",""],["timer_v1",""],["usart_v1",""]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Cmpcr","Compensation cell control register"],["Exticr","external interrupt configuration register"],["Memrm","memory remap register"],["Pmc","peripheral mode configuration register"]]});
