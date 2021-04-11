@@ -99,22 +99,22 @@ fieldset/CR:
       description: Peripheral increment mode
       bit_offset: 9
       bit_size: 1
-      enum: MINC
+      enum: INC
     - name: MINC
       description: Memory increment mode
       bit_offset: 10
       bit_size: 1
-      enum: MINC
+      enum: INC
     - name: PSIZE
       description: Peripheral data size
       bit_offset: 11
       bit_size: 2
-      enum: MSIZE
+      enum: SIZE
     - name: MSIZE
       description: Memory data size
       bit_offset: 13
       bit_size: 2
-      enum: MSIZE
+      enum: SIZE
     - name: PINCOS
       description: Peripheral increment offset size
       bit_offset: 15
@@ -139,12 +139,12 @@ fieldset/CR:
       description: Peripheral burst transfer configuration
       bit_offset: 21
       bit_size: 2
-      enum: MBURST
+      enum: BURST
     - name: MBURST
       description: Memory burst transfer configuration
       bit_offset: 23
       bit_size: 2
-      enum: MBURST
+      enum: BURST
     - name: CHSEL
       description: Channel selection
       bit_offset: 25
@@ -368,7 +368,7 @@ enum/FTH:
     - name: Full
       description: Full FIFO
       value: 3
-enum/MBURST:
+enum/BURST:
   bit_size: 2
   variants:
     - name: Single
@@ -383,7 +383,7 @@ enum/MBURST:
     - name: INCR16
       description: Incremental burst of 16 beats
       value: 3
-enum/MINC:
+enum/INC:
   bit_size: 1
   variants:
     - name: Fixed
@@ -392,7 +392,7 @@ enum/MINC:
     - name: Incremented
       description: Address pointer is incremented after each data transfer
       value: 1
-enum/MSIZE:
+enum/SIZE:
   bit_size: 2
   variants:
     - name: Bits8
