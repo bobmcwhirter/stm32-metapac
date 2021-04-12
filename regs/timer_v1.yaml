@@ -263,7 +263,6 @@ fieldset/BDTR:
       description: Main output enable
       bit_offset: 15
       bit_size: 1
-      enum: MOE
 fieldset/CCER_GP:
   description: capture/compare enable register
   fields:
@@ -373,12 +372,10 @@ fieldset/CR1_BASIC:
       description: Counter enable
       bit_offset: 0
       bit_size: 1
-      enum: CEN
     - name: UDIS
       description: Update disable
       bit_offset: 1
       bit_size: 1
-      enum: UDIS
     - name: URS
       description: Update request source
       bit_offset: 2
@@ -484,12 +481,10 @@ fieldset/DIER_BASIC:
       description: Update interrupt enable
       bit_offset: 0
       bit_size: 1
-      enum: UIE
     - name: UDE
       description: Update DMA request enable
       bit_offset: 8
       bit_size: 1
-      enum: UDE
 fieldset/DIER_GP:
   extends: DIER_BASIC
   description: DMA/Interrupt enable register
@@ -501,12 +496,10 @@ fieldset/DIER_GP:
       array:
         len: 4
         stride: 1
-      enum: CCIE
     - name: TIE
       description: Trigger interrupt enable
       bit_offset: 6
       bit_size: 1
-      enum: TIE
     - name: CCDE
       description: Capture/Compare 1 DMA request enable
       bit_offset: 9
@@ -514,12 +507,10 @@ fieldset/DIER_GP:
       array:
         len: 4
         stride: 1
-      enum: CCDE
     - name: TDE
       description: Trigger DMA request enable
       bit_offset: 14
       bit_size: 1
-      enum: TDE
 fieldset/DIER_ADV:
   extends: DIER_GP
   description: DMA/Interrupt enable register
@@ -550,7 +541,6 @@ fieldset/EGR_BASIC:
       description: Update generation
       bit_offset: 0
       bit_size: 1
-      enum: UG
 fieldset/EGR_GP:
   extends: EGR_BASIC
   description: event generation register
@@ -562,7 +552,6 @@ fieldset/EGR_GP:
       array:
         len: 4
         stride: 1
-      enum_write: CCGW
     - name: COMG
       description: Capture/Compare control update generation
       bit_offset: 5
@@ -571,7 +560,6 @@ fieldset/EGR_GP:
       description: Trigger generation
       bit_offset: 6
       bit_size: 1
-      enum_write: TGW
     - name: BG
       description: Break generation
       bit_offset: 7
@@ -647,7 +635,6 @@ fieldset/SR_BASIC:
       description: Update interrupt flag
       bit_offset: 0
       bit_size: 1
-      enum: UIF
 fieldset/SR_GP:
   extends: SR_BASIC
   description: status register
@@ -659,8 +646,6 @@ fieldset/SR_GP:
       array:
         len: 4
         stride: 1
-      enum_read: CCIFR
-      enum_write: CCIFW
     - name: COMIF
       description: COM interrupt flag
       bit_offset: 5
@@ -669,8 +654,6 @@ fieldset/SR_GP:
       description: Trigger interrupt flag
       bit_offset: 6
       bit_size: 1
-      enum_read: TIFR
-      enum_write: TIFW
     - name: BIF
       description: Break interrupt flag
       bit_offset: 7
@@ -682,8 +665,6 @@ fieldset/SR_GP:
       array:
         len: 4
         stride: 1
-      enum_read: CCOFR
-      enum_write: CCOFW
 fieldset/SR_ADV:
   extends: SR_GP
   description: status register
@@ -705,15 +686,6 @@ enum/ARPE:
     - name: Enabled
       description: TIMx_APRR register is buffered
       value: 1
-enum/CCDE:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: CCx DMA request disabled
-      value: 0
-    - name: Enabled
-      description: CCx DMA request enabled
-      value: 1
 enum/CCDS:
   bit_size: 1
   variants:
@@ -723,33 +695,6 @@ enum/CCDS:
     - name: OnUpdate
       description: CCx DMA request sent when update event occurs
       value: 1
-enum/CCGW:
-  bit_size: 1
-  variants:
-    - name: Trigger
-      description: "If CCx is an output: CCxIF flag is set, Corresponding interrupt or DMA request is sent if enabled. If CCx is an input: The current value of the counter is captured in TIMx_CCR1 register."
-      value: 1
-enum/CCIE:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: CCx interrupt disabled
-      value: 0
-    - name: Enabled
-      description: CCx interrupt enabled
-      value: 1
-enum/CCIFR:
-  bit_size: 1
-  variants:
-    - name: Match
-      description: "If CCx is an output: The content of the counter TIMx_CNT matches the content of the TIMx_CCR1 register. If CCx is an input: The counter value has been captured in TIMx_CCR1 register."
-      value: 1
-enum/CCIFW:
-  bit_size: 1
-  variants:
-    - name: Clear
-      description: Clear flag
-      value: 0
 enum/CCMR_Input_CCS:
   bit_size: 2
   variants:
@@ -768,27 +713,6 @@ enum/CCMR_Output_CCS:
     - name: Output
       description: CCx channel is configured as output
       value: 0
-enum/CCOFR:
-  bit_size: 1
-  variants:
-    - name: Overcapture
-      description: The counter value has been captured in TIMx_CCRx register while CCxIF flag was already set
-      value: 1
-enum/CCOFW:
-  bit_size: 1
-  variants:
-    - name: Clear
-      description: Clear flag
-      value: 0
-enum/CEN:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: Counter disabled
-      value: 0
-    - name: Enabled
-      description: Counter enabled
-      value: 1
 enum/CKD:
   bit_size: 2
   variants:
@@ -987,15 +911,6 @@ enum/MMS:
     - name: CompareOC4
       description: OC4REF signal is used as trigger output
       value: 7
-enum/MOE:
-  bit_size: 1
-  variants:
-    - name: DisabledIdle
-      description: OC/OCN are disabled or forced idle depending on OSSI
-      value: 0
-    - name: Enabled
-      description: OC/OCN are enabled if CCxE/CCxNE are set
-      value: 1
 enum/MSM:
   bit_size: 1
   variants:
@@ -1095,45 +1010,6 @@ enum/SMS:
     - name: Ext_Clock_Mode
       description: External Clock Mode 1 - Rising edges of the selected trigger (TRGI) clock the counter.
       value: 7
-enum/TDE:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: Trigger DMA request disabled
-      value: 0
-    - name: Enabled
-      description: Trigger DMA request enabled
-      value: 1
-enum/TGW:
-  bit_size: 1
-  variants:
-    - name: Trigger
-      description: The TIF flag is set in TIMx_SR register. Related interrupt or DMA transfer can occur if enabled.
-      value: 1
-enum/TIE:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: Trigger interrupt disabled
-      value: 0
-    - name: Enabled
-      description: Trigger interrupt enabled
-      value: 1
-enum/TIFR:
-  bit_size: 1
-  variants:
-    - name: NoTrigger
-      description: No trigger event occurred
-      value: 0
-    - name: Trigger
-      description: Trigger interrupt pending
-      value: 1
-enum/TIFW:
-  bit_size: 1
-  variants:
-    - name: Clear
-      description: Clear flag
-      value: 0
 enum/TIS:
   bit_size: 1
   variants:
@@ -1167,48 +1043,6 @@ enum/TS:
     - name: ETRF
       description: External Trigger input (ETRF)
       value: 7
-enum/UDE:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: Update DMA request disabled
-      value: 0
-    - name: Enabled
-      description: Update DMA request enabled
-      value: 1
-enum/UDIS:
-  bit_size: 1
-  variants:
-    - name: Enabled
-      description: Update event enabled
-      value: 0
-    - name: Disabled
-      description: Update event disabled
-      value: 1
-enum/UG:
-  bit_size: 1
-  variants:
-    - name: Update
-      description: Re-initializes the timer counter and generates an update of the registers.
-      value: 1
-enum/UIE:
-  bit_size: 1
-  variants:
-    - name: Disabled
-      description: Update interrupt disabled
-      value: 0
-    - name: Enabled
-      description: Update interrupt enabled
-      value: 1
-enum/UIF:
-  bit_size: 1
-  variants:
-    - name: Clear
-      description: No update occurred
-      value: 0
-    - name: UpdatePending
-      description: Update interrupt pending.
-      value: 1
 enum/URS:
   bit_size: 1
   variants:
