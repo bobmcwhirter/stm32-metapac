@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Brr","Baud rate register"],["Cr1","Control register 1"],["Cr2","Control register 2"],["Cr3","Control register 3"],["Dr","Data register"],["Gtpr","Guard time and prescaler register"],["Sr","Status register"]]});
+initSidebarItems({"struct":[["Brr","Baud rate register"],["Cr1","Control register 1"],["Cr2","Control register 2"],["Cr2Usart","Control register 2"],["Cr3","Control register 3"],["Cr3Usart","Control register 3"],["Dr","Data register"],["Gtpr","Guard time and prescaler register"],["Sr","Status register"],["SrUsart","Status register"]]});
