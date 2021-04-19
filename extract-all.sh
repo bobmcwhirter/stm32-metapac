@@ -11,7 +11,7 @@ for f in `ls svd`; do
     echo -n processing $f ...
     RUST_LOG=info ../svd2rust/target/release/svd4rust extract-peripheral --svd svd/stm32$f.svd --transform transform.yaml --peripheral $peri > regs/$peri/$f.yaml 2> regs/$peri/$f.yaml.out
     if [ $? -ne 0 ]; then 
-        mv regs/$peri/$f.yaml.out regs/$peri/$f.yaml
+        mv regs/$peri/$f.yaml.out regs/$peri/$f.err
         echo FAIL
     else
         rm regs/$peri/$f.yaml.out
